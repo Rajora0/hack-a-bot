@@ -1,0 +1,65 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon Zenvia - GLARD</title>
+    <link rel="icon" href="{{ url_for('static', filename='g.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1 class="header-text">Hackathon Zenvia</h1>
+        <div class="is-mobile navbar-border-default"></div>
+    </header>
+    <div class="container">
+        <div class="left-column">
+            <div class="form-container">
+                <form action="{{ url_for('submit_form') }}" method="post">
+                    <textarea id="campo_texto" name="campo_texto" required placeholder="Insira o texto aqui...">{{ resultado.texto_enviado }}</textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+                {% if texto_enviado %}
+                <h2>Texto enviado:</h2>
+                <p>{{ resultado.texto_enviado }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="right-column">
+            {% if resultado %}
+            <h2 class=".title.is-2">RESULTADO</h2>
+            <div class="result-item">
+                <p>Resumo:</p>
+                <p>{{ resultado.resume }}</p>
+            </div>
+            <div class="result-item">
+                <p>Identificação do problema:</p>
+                <p>{{ resultado.problem_identification }}</p>
+            </div>
+            <div class="result-item">
+                <p>Sentimento final:</p>
+                <p>{{ resultado.sentiment_analysis }}</p>
+            </div>
+            <div class="result-item">
+                <p>Tópicos relevantes:</p>
+                <p>{{ resultado.relevant_topics|join(', ') }}</p>
+            </div>
+            <div class="result-item">
+                <p>Sugestão de solução: </p>
+                <p>{{ resultado.solution_suggestion|join(', ') }}</p>
+            </div>
+            <div class="result-item" style="border-bottom: none;">
+                <p>Sugestão de template:</p>
+                <p>{{ resultado.template_response }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <footer>
+        <p>Junte-se a nós na busca por soluções inovadoras em inteligência artificial no Hackathon Zenvia e ajude a transformar o futuro da tecnologia! - ChatGPT</p>
+    </footer>
+</body>
+</html>
+

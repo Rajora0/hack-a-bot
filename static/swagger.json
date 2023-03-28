@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Uma API simples para demonstração",
+    "version": "1.0.0",
+    "title": "API de Exemplo"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "dados",
+      "description": "Operações relacionadas aos dados"
+    }
+  ],
+  "paths": {
+    "/api/dados/{texto}": {
+      "get": {
+        "tags": ["dados"],
+        "summary": "Obter dados",
+        "description": "Retorna os dados em JSON com base no texto fornecido",
+        "parameters": [
+          {
+            "name": "texto",
+            "in": "path",
+            "description": "Texto para gerar os campos",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dados obtidos com sucesso",
+            "schema": {
+              "$ref": "#/definitions/Dados"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Dados": {
+      "type": "object",
+      "properties": {
+        "resume": {
+          "type": "string",
+          "description": "Resumo baseado no campo de texto"
+        },
+        "problem_identification": {
+          "type": "string",
+          "description": "Identificação do problema baseada no campo de texto"
+        },
+        "sentiment_analysis": {
+          "type": "string",
+          "description": "Análise de sentimento baseada no campo de texto"
+        },
+        "relevant_topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Tópicos relevantes baseados no campo de texto"
+        },
+        "solution_suggestion": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Sugestões de solução baseadas no campo de texto"
+        },
+        "template_response": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Resposta do template baseada no campo de texto"
+        }
+      }
+    }
+  }
+}
